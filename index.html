@@ -314,11 +314,19 @@
     padding-block:clamp(40px,7vh,80px);
     background:radial-gradient(130% 110% at 50% 10%, var(--paper) 55%, var(--paper-deep) 100%);
   }
-  .timeline .monogram{ align-self:center; }   /* centrado (anula el align-self:start de la portada) */
-  .tl-head{
-    font-size:clamp(.8rem,1.6vw,1rem);
-    letter-spacing:.34em; text-transform:uppercase; text-indent:.34em;
-    color:var(--navy);
+  .timeline{ position:relative; }
+  .timeline .monogram{            /* mismo sitio que en la portada: arriba, centrado */
+    position:absolute; top:clamp(14px,2.4vh,30px); left:0; right:0;
+    justify-content:center; align-self:auto;
+  }
+  .tl-head{                       /* misma tipografía que los nombres de la portada */
+    font-family:var(--f-display);
+    font-weight:500;
+    font-size:clamp(1.8rem,3.8vw,2.9rem);
+    letter-spacing:.01em;
+    line-height:1.1;
+    color:var(--ink);
+    text-wrap:balance;
   }
   .tl-steps{
     display:flex; align-items:flex-start; justify-content:center;
