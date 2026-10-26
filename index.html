@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Boda de Claudia y Marc — 25 de septiembre de 2027, Menorca.">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0);padding-bottom:env(safe-area-inset-bottom,0)}html,body{margin:0}body{font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Claudia & Marc</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Pinyon+Script&family=Herr+Von+Muellerhoff&display=swap">
+<style>
+  /* ---------------------------------------------------------------
+     Portada boda Claudia & Marc — Menorca · 25.09.2027
+     Dirección: invitación de papel en marfil cálido con tinta azul
+     marino. Composición libre: la bienvenida y los nombres anclan el
+     centro; fotos impresas e ilustraciones de costa se dispersan por
+     las esquinas, ligeramente giradas. Tema único claro.
+  ---------------------------------------------------------------- */
+  :root{
+    --paper:#F6F3EB;
+    --paper-deep:#EFEADD;
+    --ink:#233449;
+    --navy:#1B3A5B;
+    --navy-soft:#6A7991;
+    --hair:rgba(27,58,91,.30);
+    --frame:#FFFFFF;
+    --ph-a:#E9ECF2;
+    --ph-b:#D7DEEA;
+    color-scheme: light;
+
+    --f-display:'Cormorant Garamond','Cormorant',Georgia,'Times New Roman',serif;
+    --f-script:'Snell Roundhand','Apple Chancery','Pinyon Script',cursive;
+  }
+
+  html{scroll-behavior:smooth;}
+  html,body{background:var(--paper);min-height:100%;}
+  body{
+    color:var(--ink);
+    font-family:var(--f-display);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    background:radial-gradient(130% 110% at 50% 20%, var(--paper) 55%, var(--paper-deep) 100%);
+  }
+
+  .cover{
+    max-width:1200px;
+    margin-inline:auto;
+    min-height:100svh;                 /* la portada llena la pantalla */
+    box-sizing:border-box;
+    display:flex;flex-direction:column;
+    padding-left:max(18px,env(safe-area-inset-left,0px));
+    padding-right:max(18px,env(safe-area-inset-right,0px));
+    padding-block:clamp(14px,2.4vh,30px);
+  }
+
+  /* ---------- Escenario (rejilla de dispersión) ---------- */
+  .stage{
+    position:relative;
+    width:100%;
+    flex:1 1 auto;
+    min-height:0;
+    display:grid;
+    grid-template-columns:1fr minmax(auto,540px) 1fr;
+    grid-template-rows:auto 1fr auto auto;
+    grid-template-areas:
+      "ph1  mono sail"
+      "mid  mid  mid"
+      "faro cpl  ph2"
+      "scr  scr  scr";
+    align-items:center;
+    justify-items:center;
+    gap:clamp(6px,1vw,18px);
+  }
+
+  /* ---------- Bloque central ---------- */
+  .center{
+    grid-area:mid;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:clamp(4px,1vh,12px);
+    text-align:center;
+    opacity:0;animation:rise 1s ease-out .14s forwards;
+  }
+  .center > *{margin:0;}
+
+  .monogram{
+    grid-area:mono;
+    justify-self:center;align-self:start;
+    display:flex;align-items:center;gap:.6em;
+    font-size:clamp(1.5rem,2.6vw,2.1rem);
+    font-weight:700;letter-spacing:.14em;color:var(--navy);
+    opacity:0;animation:rise 1s ease-out .05s forwards;
+  }
+  .monogram .bar{width:1px;height:1.5em;background:var(--hair);}
+  .monogram span{text-indent:.14em;}
+
+  .welcome{
+    font-size:clamp(1rem,2.5vw,1.6rem);
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    text-indent:.2em;
+    line-height:1.12;
+    color:var(--navy);
+  }
+  .welcome .cursive{
+    font-family:'Herr Von Muellerhoff','Snell Roundhand',cursive;
+    text-transform:none;letter-spacing:normal;text-indent:0;
+    font-size:2.2em;line-height:0;color:var(--navy);
+  }
+
+  .names{
+    font-weight:500;
+    font-size:clamp(2.6rem,6.4vw,4.9rem);
+    line-height:.98;
+    letter-spacing:.015em;
+    color:var(--ink);
+    text-wrap:balance;
+    display:flex;align-items:baseline;justify-content:center;gap:.2em;flex-wrap:wrap;
+  }
+  .names .amp{
+    font-family:var(--f-script);font-weight:400;
+    font-size:1.15em;line-height:0;color:var(--navy);
+    padding-inline:.06em;transform:translateY(.06em);
+  }
+
+  .date{
+    font-size:clamp(1rem,2vw,1.4rem);
+    letter-spacing:.06em;
+    color:var(--ink);
+    font-feature-settings:"onum" 1;
+  }
+
+  /* ---------- Fotos impresas (dispersas) ---------- */
+  .photo{opacity:0;animation:rise 1s ease-out forwards;}
+  .ph-a{grid-area:ph1;justify-self:start;align-self:start;animation-delay:.3s;}
+  .ph-b{grid-area:ph2;justify-self:end;align-self:end;animation-delay:.46s;}
+
+  .frame{
+    background:var(--frame);
+    padding:clamp(7px,0.9vw,11px);
+    padding-bottom:clamp(12px,1.5vw,18px);
+    width:clamp(110px,19.5vh,184px);     /* se adapta a la altura de la pantalla */
+    box-shadow:0 1px 2px rgba(31,45,66,.12),0 12px 26px rgba(31,45,66,.16);
+    transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease;
+  }
+  .ph-a .frame{transform:rotate(-7deg);}
+  .ph-b .frame{transform:rotate(6deg);}
+  .frame:hover{
+    transform:rotate(0) translateY(-4px) scale(1.04);
+    box-shadow:0 2px 4px rgba(31,45,66,.14),0 20px 40px rgba(31,45,66,.22);
+  }
+  .shot{
+    aspect-ratio:4/5;
+    background:radial-gradient(120% 120% at 50% 32%, var(--ph-a), var(--ph-b));
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5em;
+    color:var(--navy);
+  }
+  .shot svg{width:30%;max-width:50px;opacity:.55;}
+  .shot .tag{
+    font-size:clamp(.6rem,1vw,.72rem);letter-spacing:.24em;text-transform:uppercase;
+    color:var(--navy-soft);text-indent:.24em;
+  }
+  .frame{position:relative;}
+  .frame .scribble{
+    position:absolute;left:0;right:0;bottom:clamp(4px,.8vw,10px);
+    font-family:var(--f-script);font-size:clamp(1.1rem,1.8vw,1.45rem);line-height:1;
+    color:var(--navy-soft);text-align:center;
+  }
+
+  /* ---------- Contornos de costa (dispersos) ---------- */
+  .illo{height:auto;max-width:100%;opacity:0;animation:fade 1.2s ease-out forwards;}
+  .velero{
+    grid-area:sail;justify-self:end;align-self:start;
+    margin-top:clamp(28px,6vh,74px);
+    width:clamp(108px,14vw,180px);
+    transform:translateX(-34%) rotate(3deg);animation-delay:.6s;
+  }
+  .faro{
+    grid-area:faro;justify-self:start;align-self:start;
+    margin-top:0;
+    width:clamp(108px,14vw,180px);
+    transform:translate(18%,-26%) rotate(-3deg);animation-delay:.72s;
+  }
+  .avarcas{
+    position:absolute;
+    left:82%; top:34%;
+    width:clamp(52px,6.5vw,88px);
+    transform:translateY(-10%) rotate(5deg);
+    opacity:0;animation:fade 1.2s ease-out .8s forwards;
+    pointer-events:none; z-index:3;
+  }
+  .couple{
+    grid-area:cpl;justify-self:center;align-self:start;
+    width:clamp(74px,9.5vw,124px);          /* algo menor que el faro */
+    margin-top:clamp(34px,7vh,88px);        /* alineada con el faro */
+    transform:translateX(-22%);
+    animation-delay:.9s;
+  }
+
+  /* ---------- Gaviotas (línea fina) ---------- */
+  .birds{position:absolute;inset:0;pointer-events:none;z-index:1;}
+  .gull{
+    position:absolute;
+    width:clamp(26px,3.2vw,44px);height:auto;
+    color:var(--navy-soft);
+    opacity:0;animation:fade 1.4s ease-out forwards;
+  }
+  .gull:nth-child(1){animation-delay:1.2s;}
+  .gull:nth-child(2){animation-delay:1.32s;}
+  .gull:nth-child(3){animation-delay:1.44s;}
+  .gull:nth-child(4){animation-delay:1.56s;}
+  .gull:nth-child(5){animation-delay:1.68s;}
+  .gull:nth-child(6){animation-delay:1.8s;}
+
+  /* ---------- Indicador de desplazamiento ---------- */
+  .scrollcue{
+    grid-area:scr;align-self:end;
+    display:flex;flex-direction:column;align-items:center;gap:.6em;
+    color:var(--navy-soft);
+    opacity:0;animation:fade 1.2s ease-out 1.4s forwards;
+  }
+  .scrollcue .lbl{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;text-indent:.3em;}
+  .scrollcue svg{width:16px;animation:bob 2.4s ease-in-out infinite;}
+  a.scrollcue{text-decoration:none;cursor:pointer;}
+
+  /* ====================================================================
+     SEGUNDA HOJA — foto en blanco y negro a sangre + lema en blanco
+     ==================================================================== */
+  .spread{
+    position:relative;
+    min-height:100svh;
+    display:grid;
+    place-items:center;
+    overflow:hidden;
+    isolation:isolate;
+  }
+  /* marcador de foto B/N (se sustituye por la foto real) */
+  .spread .photo-bw{
+    position:absolute; inset:0; z-index:-2;
+    background:
+      radial-gradient(120% 90% at 30% 20%, #51606f 0%, transparent 55%),
+      radial-gradient(120% 90% at 80% 90%, #2a333d 0%, transparent 60%),
+      linear-gradient(145deg, #45515f 0%, #222a33 60%, #171d24 100%);
+    filter:grayscale(1) contrast(1.02);
+  }
+  .spread .photo-bw::after{   /* grano/viñeta sutil para que lea como foto */
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(130% 120% at 50% 42%, transparent 55%, rgba(0,0,0,.42) 100%);
+  }
+  /* velo oscuro para legibilidad del texto blanco */
+  .spread .scrim{
+    position:absolute; inset:0; z-index:-1;
+    background:linear-gradient(180deg, rgba(14,20,28,.30) 0%, rgba(14,20,28,.18) 45%, rgba(14,20,28,.40) 100%);
+  }
+  /* etiqueta provisional de la foto */
+  .spread .ph-note{
+    position:absolute; left:50%; bottom:clamp(20px,5vh,46px); transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:.55em;
+    color:rgba(255,255,255,.72);
+  }
+  .spread .ph-note svg{width:30px;opacity:.8;}
+  .spread .ph-note span{
+    font-size:.66rem; letter-spacing:.26em; text-transform:uppercase; text-indent:.26em;
+  }
+
+  .motto{
+    position:relative; z-index:1;
+    text-align:center;
+    color:#fff;
+    padding-inline:24px;
+    max-width:18ch;
+    text-shadow:0 1px 24px rgba(0,0,0,.35);
+  }
+  .motto .eyebrow{
+    font-size:clamp(.72rem,1.4vw,.9rem);
+    letter-spacing:.34em; text-transform:uppercase; text-indent:.34em;
+    color:rgba(255,255,255,.82);
+    display:block; margin-bottom:clamp(14px,2.4vh,26px);
+  }
+  .motto .line{
+    font-family:var(--f-display);
+    font-weight:400;
+    font-size:clamp(2.1rem,5.6vw,4rem);
+    line-height:1.08;
+    letter-spacing:.01em;
+    text-wrap:balance;
+  }
+  .motto .line em{
+    font-family:'Herr Von Muellerhoff','Snell Roundhand',cursive;
+    font-style:normal;
+    font-size:1.5em; line-height:0;
+  }
+  .motto .hint{
+    display:inline-block; margin-top:clamp(14px,2.4vh,26px);
+    padding:.4em 1.1em;
+    border:1px dashed rgba(255,255,255,.5);
+    border-radius:2px;
+    font-family:var(--f-display);
+    font-size:.74rem; letter-spacing:.14em; text-transform:uppercase;
+    color:rgba(255,255,255,.85);
+  }
+
+  /* ====================================================================
+     TERCERA HOJA — timeline (horizontal en ordenador, vertical en móvil)
+     ==================================================================== */
+  .timeline{
+    min-height:100svh;
+    box-sizing:border-box;
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    gap:clamp(26px,5vh,54px);
+    padding-left:max(18px,env(safe-area-inset-left,0px));
+    padding-right:max(18px,env(safe-area-inset-right,0px));
+    padding-block:clamp(40px,7vh,80px);
+    background:radial-gradient(130% 110% at 50% 10%, var(--paper) 55%, var(--paper-deep) 100%);
+  }
+  .tl-head{
+    font-size:clamp(.8rem,1.6vw,1rem);
+    letter-spacing:.34em; text-transform:uppercase; text-indent:.34em;
+    color:var(--navy);
+  }
+  .tl-steps{
+    display:flex; align-items:flex-start; justify-content:center;
+    width:100%; max-width:1080px;
+  }
+  .tl-step{
+    display:flex; flex-direction:column; align-items:center;
+    gap:clamp(8px,1.4vh,16px);
+    flex:0 0 auto; width:clamp(158px,24vw,252px); text-align:center;
+  }
+  .tl-step .ic{
+    height:clamp(66px,10.5vh,104px); width:auto; max-width:100%; display:block;
+  }
+  .tl-step .lbl{
+    font-family:'Pinyon Script','Snell Roundhand',cursive;
+    font-size:clamp(1.9rem,3.6vw,3rem);
+    line-height:1; color:var(--navy);
+  }
+  .tl-step .time{
+    font-family:var(--f-display);
+    font-size:clamp(1rem,1.8vw,1.35rem);
+    letter-spacing:.3em; text-indent:.3em;
+    color:var(--navy-soft);
+    font-feature-settings:"onum" 1;
+  }
+  /* conector con línea discontinua y corazón */
+  .tl-link{
+    flex:1 1 auto; align-self:flex-start;
+    height:clamp(66px,10.5vh,104px);        /* igual que el icono: la línea queda a su altura */
+    min-width:30px; position:relative;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .tl-link::before{
+    content:""; position:absolute; left:4px; right:4px; top:50%;
+    border-top:1.6px dashed rgba(27,58,91,.4);
+  }
+  .tl-link .heart{
+    position:relative; width:16px; height:16px; color:var(--navy);
+    background:var(--paper); padding:0 7px; box-sizing:content-box;
+  }
+
+  /* ---- móvil: timeline en vertical (como la referencia) ---- */
+  @media (max-width:760px){
+    .tl-steps{ flex-direction:column; align-items:center; max-width:none; }
+    .tl-step{ width:auto; }
+    .tl-link{
+      align-self:center; width:auto; height:clamp(44px,8vh,72px);
+      flex:0 0 auto;
+    }
+    .tl-link::before{
+      left:50%; right:auto; top:4px; bottom:4px; transform:translateX(-50%);
+      border-top:none; border-left:1.6px dashed rgba(27,58,91,.4);
+    }
+    .tl-link .heart{ padding:7px 0; }
+  }
+
+  /* ---------- Animaciones ---------- */
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes fade{from{opacity:0;}to{opacity:1;}}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(5px);}}
+
+  @media (prefers-reduced-motion:reduce){
+    .monogram,.center,.photo,.illo,.avarcas,.gull,.scrollcue{animation:none!important;opacity:1!important;}
+    .scrollcue svg{animation:none!important;}
+  }
+
+  /* ---------- Estrecho / móvil (apilado provisional) ---------- */
+  @media (max-width:760px){
+    .stage{
+      grid-template-columns:1fr;
+      grid-template-rows:none;
+      grid-template-areas:"mono" "mid" "ph1" "ph2" "sail" "faro" "cpl" "scr";
+      min-height:auto;
+      gap:30px;
+      padding-block:12px;
+    }
+    .ph-a,.ph-b{justify-self:center;}
+    .velero,.faro,.couple{justify-self:center;align-self:center;margin-top:0;}
+    .ph-a .frame{transform:rotate(-4deg);}
+    .ph-b .frame{transform:rotate(3deg);}
+    .frame{width:clamp(150px,46vw,210px);}
+    .velero{width:min(40vw,170px);}
+    .faro{width:min(40vw,170px);}
+    .couple{width:min(30vw,130px);}
+    .avarcas{position:static;transform:rotate(5deg);width:min(26vw,110px);justify-self:center;margin:4px auto 0;}
+  }
+</style>
+</head>
+<body>
+<main class="cover">
+  <section class="stage">
+
+    <div class="monogram" aria-label="C y M">
+      <span>C</span><i class="bar"></i><span>M</span>
+    </div>
+
+    <div class="center">
+      <p class="welcome">Bienvenidos a <span class="cursive">nuestra</span> boda</p>
+      <h1 class="names">Claudia<span class="amp">&amp;</span>Marc</h1>
+      <p class="date">25 de septiembre de 2027</p>
+    </div>
+
+    <figure class="photo ph-a"><div class="frame">
+      <div class="shot">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h7l3-4h10l3 4h7a2 2 0 0 1 2 2v18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V18a2 2 0 0 1 2-2Z"/><circle cx="24" cy="27" r="7"/></svg>
+        <span class="tag">Foto 1</span>
+      </div>
+    </div></figure>
+
+    <figure class="photo ph-b"><div class="frame">
+      <div class="shot">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h7l3-4h10l3 4h7a2 2 0 0 1 2 2v18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V18a2 2 0 0 1 2-2Z"/><circle cx="24" cy="27" r="7"/></svg>
+        <span class="tag">Foto 2</span>
+      </div>
+    </div></figure>
+
+    <img class="illo velero" src="assets/velero.png" alt="" aria-hidden="true">
+    <img class="illo faro" src="assets/faro.png" alt="" aria-hidden="true">
+    <img class="illo couple" src="assets/pareja.png" alt="" aria-hidden="true">
+    <img class="avarcas" src="assets/avarcas.png" alt="" aria-hidden="true">
+
+    <div class="birds" aria-hidden="true">
+      <svg class="gull" style="top:12%;left:37%;width:clamp(26px,3.1vw,36px);transform:rotate(-5deg)" viewBox="0 0 30 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M1 10 Q8 1 15 8 Q22 1 29 10"/></svg>
+      <svg class="gull" style="top:19%;left:45%;width:clamp(32px,3.8vw,44px);transform:rotate(-2deg)" viewBox="0 0 30 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M1 10 Q8 1 15 8 Q22 1 29 10"/></svg>
+      <svg class="gull" style="top:10%;left:56%;width:clamp(24px,2.9vw,32px);transform:rotate(4deg)" viewBox="0 0 30 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M1 10 Q8 1 15 8 Q22 1 29 10"/></svg>
+      <svg class="gull" style="top:16%;left:51%;width:clamp(28px,3.4vw,38px);transform:rotate(-3deg)" viewBox="0 0 30 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M1 10 Q8 1 15 8 Q22 1 29 10"/></svg>
+      <svg class="gull" style="top:23%;left:43%;width:clamp(22px,2.6vw,30px);transform:rotate(5deg)" viewBox="0 0 30 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M1 10 Q8 1 15 8 Q22 1 29 10"/></svg>
+      <svg class="gull" style="top:14%;left:60%;width:clamp(22px,2.7vw,30px);transform:rotate(-4deg)" viewBox="0 0 30 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M1 10 Q8 1 15 8 Q22 1 29 10"/></svg>
+    </div>
+
+    <a class="scrollcue" href="#capitulo-dos" aria-label="Desliza para ver más">
+      <span class="lbl">Desliza</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </a>
+
+  </section>
+</main>
+
+<section class="spread" id="capitulo-dos">
+  <div class="photo-bw"></div>
+  <div class="scrim"></div>
+
+  <div class="motto">
+    <span class="eyebrow">Claudia &amp; Marc</span>
+    <p class="line"><span class="hint">· vuestro lema aquí ·</span></p>
+  </div>
+
+  <div class="ph-note" aria-hidden="true">
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h7l3-4h10l3 4h7a2 2 0 0 1 2 2v18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V18a2 2 0 0 1 2-2Z"/><circle cx="24" cy="27" r="7"/></svg>
+    <span>Foto en blanco y negro</span>
+  </div>
+</section>
+
+<section class="timeline" id="timeline">
+  <p class="tl-head">¡Aquí tienes lo importante!</p>
+
+  <div class="tl-steps">
+    <div class="tl-step">
+      <img class="ic" src="assets/tl_bus.png" alt="" aria-hidden="true">
+      <span class="lbl">Recogida autobús</span>
+      <span class="time">__ : __</span>
+    </div>
+
+    <div class="tl-link" aria-hidden="true">
+      <svg class="heart" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14s-5-3.2-5-6.4A2.6 2.6 0 0 1 8 5a2.6 2.6 0 0 1 5 2.6C13 10.8 8 14 8 14Z"/></svg>
+    </div>
+
+    <div class="tl-step">
+      <img class="ic" src="assets/tl_rings.png" alt="" aria-hidden="true">
+      <span class="lbl">Ceremonia</span>
+      <span class="time">__ : __</span>
+    </div>
+
+    <div class="tl-link" aria-hidden="true">
+      <svg class="heart" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14s-5-3.2-5-6.4A2.6 2.6 0 0 1 8 5a2.6 2.6 0 0 1 5 2.6C13 10.8 8 14 8 14Z"/></svg>
+    </div>
+
+    <div class="tl-step">
+      <img class="ic" src="assets/tl_toast.png" alt="" aria-hidden="true">
+      <span class="lbl">Celebración</span>
+      <span class="time">__ : __</span>
+    </div>
+  </div>
+</section>
+</body>
+</html>
