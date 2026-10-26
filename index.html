@@ -434,6 +434,67 @@
     .couple{width:min(30vw,130px);}
     .avarcas{position:static;transform:rotate(5deg);width:min(26vw,110px);justify-self:center;margin:4px auto 0;}
   }
+
+  /* ====================================================================
+     CUARTA HOJA — RSVP (confirmación de invitados)
+     ==================================================================== */
+  .rsvp{
+    min-height:100svh; box-sizing:border-box;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:clamp(22px,4vh,40px);
+    padding-left:max(18px,env(safe-area-inset-left,0px));
+    padding-right:max(18px,env(safe-area-inset-right,0px));
+    padding-block:clamp(44px,8vh,90px);
+    background:radial-gradient(130% 110% at 50% 8%, var(--paper) 55%, var(--paper-deep) 100%);
+  }
+  .rsvp-head{
+    font-family:var(--f-display); font-weight:500;
+    font-size:clamp(2.4rem,6vw,4rem); line-height:1; color:var(--ink);
+    text-align:center; text-wrap:balance;
+  }
+  .rsvp-sub{
+    font-family:var(--f-display); font-style:italic;
+    font-size:clamp(1rem,2vw,1.3rem); color:var(--navy-soft);
+    text-align:center; margin-top:-.4em;
+  }
+  .rsvp form{ width:min(100%,560px); display:flex; flex-direction:column; gap:clamp(20px,3.2vh,30px); }
+  .field{ display:flex; flex-direction:column; gap:.6em; }
+  .field .q{ font-family:var(--f-display); font-size:clamp(1.1rem,2.1vw,1.35rem); color:var(--ink); line-height:1.3; }
+  .field .note{ font-size:clamp(.74rem,1.4vw,.84rem); color:var(--navy-soft); line-height:1.35; }
+  .rsvp input[type=text], .rsvp textarea{
+    font-family:var(--f-display); font-size:1.05rem; color:var(--ink);
+    background:#fff; border:1px solid var(--hair); border-radius:4px;
+    padding:.7em .9em; width:100%; box-sizing:border-box;
+  }
+  .rsvp textarea{ min-height:3.4em; resize:vertical; }
+  .rsvp input:focus, .rsvp textarea:focus{ outline:2px solid var(--navy); outline-offset:1px; border-color:transparent; }
+  /* Sí / No en píldoras */
+  .choice{ display:inline-flex; border:1px solid var(--hair); border-radius:999px; overflow:hidden; background:#fff; width:max-content; }
+  .choice input{ position:absolute; width:1px; height:1px; opacity:0; pointer-events:none; }
+  .choice label{
+    padding:.55em 1.6em; cursor:pointer; color:var(--navy-soft);
+    font-family:var(--f-display); font-size:1.02rem; transition:background .2s,color .2s;
+  }
+  .choice label:not(:first-of-type){ border-left:1px solid var(--hair); }
+  .choice input:checked + label{ background:var(--navy); color:#fff; }
+  .choice input:focus-visible + label{ outline:2px solid var(--navy); outline-offset:2px; }
+  /* campos condicionales */
+  .cond{ display:flex; flex-direction:column; gap:.6em; padding-left:clamp(10px,2vw,18px); border-left:2px solid var(--hair); }
+  /* botón enviar */
+  .rsvp .submit{
+    margin-top:clamp(6px,1.5vh,14px); align-self:center;
+    background:var(--navy); color:#fff; border:none; cursor:pointer;
+    font-family:var(--f-display); font-size:1.1rem; letter-spacing:.14em; text-transform:uppercase; text-indent:.14em;
+    padding:.85em 2.6em; border-radius:999px; transition:transform .2s,background .2s;
+  }
+  .rsvp .submit:hover{ transform:translateY(-2px); }
+  .rsvp .submit:disabled{ opacity:.6; cursor:default; transform:none; }
+  .rsvp-done{
+    text-align:center; display:flex; flex-direction:column; align-items:center; gap:.6em;
+    color:var(--ink);
+  }
+  .rsvp-done .big{ font-family:var(--f-display); font-size:clamp(1.8rem,4vw,2.8rem); color:var(--navy); }
+  .rsvp-done .sm{ font-size:1rem; color:var(--navy-soft); max-width:30ch; }
 </style>
 </head>
 <body>
@@ -547,6 +608,92 @@
   </div>
 </section>
 
+<section class="rsvp" id="rsvp">
+  <div>
+    <h2 class="rsvp-head">¿Te apuntas?</h2>
+    <p class="rsvp-sub">Confírmanos tu asistencia</p>
+  </div>
+
+  <form name="rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="rsvp-form">
+    <input type="hidden" name="form-name" value="rsvp">
+    <p hidden><label>No rellenar: <input name="bot-field"></label></p>
+
+    <!-- 1 -->
+    <div class="field">
+      <label class="q" for="nombre">Nombre y apellido</label>
+      <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+    </div>
+
+    <!-- 2 -->
+    <div class="field">
+      <span class="q">¿Vendrás a la boda?</span>
+      <span class="choice">
+        <input type="radio" id="asiste-si" name="asiste" value="Sí" required><label for="asiste-si">Sí</label>
+        <input type="radio" id="asiste-no" name="asiste" value="No"><label for="asiste-no">No</label>
+      </span>
+    </div>
+
+    <!-- 3 -->
+    <div class="field">
+      <span class="q">¿Y tu +1 viene?</span>
+      <span class="choice">
+        <input type="radio" id="mas1-si" name="acompanante" value="Sí"><label for="mas1-si">Sí</label>
+        <input type="radio" id="mas1-no" name="acompanante" value="No"><label for="mas1-no">No</label>
+      </span>
+      <div class="cond" id="cond-mas1" hidden>
+        <label class="q" for="mas1-nombre">Nombre y apellido de tu +1</label>
+        <input type="text" id="mas1-nombre" name="acompanante_nombre" autocomplete="off">
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="field">
+      <span class="q">¿Necesitas bus?</span>
+      <span class="choice">
+        <input type="radio" id="bus-si" name="bus" value="Sí"><label for="bus-si">Sí</label>
+        <input type="radio" id="bus-no" name="bus" value="No"><label for="bus-no">No</label>
+      </span>
+      <span class="note">Las plazas de parking son muy limitadas y están reservadas para la familia.</span>
+    </div>
+
+    <!-- 5 -->
+    <div class="field">
+      <span class="q">¿Te apetece pescado?</span>
+      <span class="choice">
+        <input type="radio" id="pescado-si" name="pescado" value="Sí"><label for="pescado-si">Sí</label>
+        <input type="radio" id="pescado-no" name="pescado" value="No"><label for="pescado-no">No</label>
+      </span>
+      <span class="note">Será opción Kosher.</span>
+      <div class="cond" id="cond-pescado-mas1" hidden>
+        <span class="q">¿Y a tu +1 le apetece pescado?</span>
+        <span class="choice">
+          <input type="radio" id="pescado1-si" name="pescado_acompanante" value="Sí"><label for="pescado1-si">Sí</label>
+          <input type="radio" id="pescado1-no" name="pescado_acompanante" value="No"><label for="pescado1-no">No</label>
+        </span>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="field">
+      <label class="q" for="cancion">¿Te apetece alguna canción para la fiesta?</label>
+      <input type="text" id="cancion" name="cancion" autocomplete="off">
+    </div>
+
+    <!-- 7 -->
+    <div class="field">
+      <label class="q" for="pregunta">¿Alguna pregunta?</label>
+      <textarea id="pregunta" name="pregunta"></textarea>
+    </div>
+
+    <button type="submit" class="submit">Enviar</button>
+  </form>
+
+  <div class="rsvp-done" id="rsvp-done" hidden>
+    <span class="big">¡Gracias!</span>
+    <span class="sm">Hemos recibido tu confirmación. ¡Nos vemos en Menorca!</span>
+  </div>
+</section>
+
 <script>
   (function(){
     // Boda: 25 de septiembre de 2027, 00:00 (hora de Madrid, CEST +02:00)
@@ -577,6 +724,52 @@
     }
     tick();
     var id = setInterval(function(){ if(tick()===false){ clearInterval(id); } }, 1000);
+  })();
+
+  /* ---- RSVP: campos condicionales + envío ---- */
+  (function(){
+    var form = document.getElementById('rsvp-form');
+    if(!form){ return; }
+    var condMas1 = document.getElementById('cond-mas1');
+    var condPescadoMas1 = document.getElementById('cond-pescado-mas1');
+    var mas1Nombre = document.getElementById('mas1-nombre');
+
+    function vieneMas1(){
+      var si = document.getElementById('mas1-si');
+      return si && si.checked;
+    }
+    function syncMas1(){
+      var viene = vieneMas1();
+      condMas1.hidden = !viene;             // campo nombre del +1
+      condPescadoMas1.hidden = !viene;      // pregunta pescado del +1
+      if(mas1Nombre){ mas1Nombre.required = viene; }
+      if(!viene){
+        if(mas1Nombre){ mas1Nombre.value=''; }
+        ['pescado1-si','pescado1-no'].forEach(function(id){
+          var el=document.getElementById(id); if(el){ el.checked=false; }
+        });
+      }
+    }
+    form.querySelectorAll('input[name="acompanante"]').forEach(function(r){
+      r.addEventListener('change', syncMas1);
+    });
+    syncMas1();
+
+    // Envío: AJAX a "/" (Netlify Forms lo recoge en la web real; en la vista previa muestra el agradecimiento)
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!form.reportValidity()){ return; }
+      var btn = form.querySelector('.submit');
+      if(btn){ btn.disabled = true; btn.textContent = 'Enviando…'; }
+      var body = new URLSearchParams(new FormData(form)).toString();
+      var done = function(){
+        form.hidden = true;
+        var d = document.getElementById('rsvp-done');
+        if(d){ d.hidden = false; }
+      };
+      fetch('/', { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body:body })
+        .then(done).catch(done);
+    });
   })();
 </script>
 </body>
