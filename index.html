@@ -439,6 +439,7 @@
      CUARTA HOJA — RSVP (confirmación de invitados)
      ==================================================================== */
   .rsvp{
+    position:relative; overflow:hidden;
     min-height:100svh; box-sizing:border-box;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     gap:clamp(22px,4vh,40px);
@@ -446,6 +447,15 @@
     padding-right:max(18px,env(safe-area-inset-right,0px));
     padding-block:clamp(44px,8vh,90px);
     background:radial-gradient(130% 110% at 50% 8%, var(--paper) 55%, var(--paper-deep) 100%);
+  }
+  .rsvp > :where(div, form){ position:relative; z-index:1; }   /* el formulario por delante */
+  /* adornos dispersos (mismos de la portada) */
+  .rsvp-deco{ position:absolute; z-index:0; height:auto; pointer-events:none; }
+  .rsvp .d-velero{ top:8%;  right:5%; width:clamp(120px,13vw,185px); transform:rotate(4deg); }
+  .rsvp .d-pareja{ top:12%; left:6%;  width:clamp(82px,9.5vw,128px); transform:rotate(-5deg); }
+  .rsvp .d-faro{   bottom:7%; left:5%; width:clamp(108px,12vw,168px); transform:rotate(-3deg); }
+  @media (max-width:760px){
+    .rsvp-deco{ display:none; }   /* en móvil, formulario limpio */
   }
   .rsvp-head{
     font-family:var(--f-display); font-weight:500;
@@ -611,6 +621,10 @@
 </section>
 
 <section class="rsvp" id="rsvp">
+  <img class="rsvp-deco d-velero" src="assets/velero.png" alt="" aria-hidden="true">
+  <img class="rsvp-deco d-pareja" src="assets/pareja.png" alt="" aria-hidden="true">
+  <img class="rsvp-deco d-faro" src="assets/faro.png" alt="" aria-hidden="true">
+
   <div>
     <h2 class="rsvp-head">¿Te apuntas?</h2>
     <p class="rsvp-sub">Confirma tu asistencia antes del 30 de junio de 2027</p>
