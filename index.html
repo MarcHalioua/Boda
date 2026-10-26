@@ -753,11 +753,14 @@
     function noViene(){ var el=document.getElementById('asiste-no'); return el && el.checked; }
     function vieneMas1(){ var si=document.getElementById('mas1-si'); return si && si.checked && !noViene(); }
 
+    function setReq(name, req){ form.querySelectorAll('input[name="'+name+'"]').forEach(function(r){ r.required = req; }); }
+
     function syncMas1(){
       var viene = vieneMas1();
       condMas1.hidden = !viene;             // campo nombre del +1
       condPescadoMas1.hidden = !viene;      // pregunta pescado del +1
       if(mas1Nombre){ mas1Nombre.required = viene; if(!viene){ mas1Nombre.value=''; } }
+      setReq('pescado_acompanante', viene); // obligatoria solo si el +1 viene
       if(!viene){
         ['pescado1-si','pescado1-no'].forEach(function(id){ var el=document.getElementById(id); if(el){ el.checked=false; } });
       }
@@ -765,11 +768,17 @@
 
     function syncAsiste(){
       var no = noViene();
+      var si = document.getElementById('asiste-si').checked;
       attend.hidden = no;            // si no viene, desaparecen las demás preguntas
       seguroBlock.hidden = !no;      // y aparece "¿Seguro?"
-      form.querySelectorAll('input[name="seguro"]').forEach(function(r){ r.required = no; });
+      setReq('seguro', false);       // "¿Seguro?" opcional (si no viene, basta el nombre)
+      // si viene: todas obligatorias salvo canción y "¿Alguna pregunta?"
+      setReq('acompanante', si);
+      setReq('bus', si);
+      setReq('pescado', si);
       if(no){
         if(mas1Nombre){ mas1Nombre.required = false; }
+        setReq('pescado_acompanante', false);
       }else{
         // volver al formulario normal
         ['seguro-si','seguro-no'].forEach(function(id){ var el=document.getElementById(id); if(el){ el.checked=false; } });
