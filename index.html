@@ -614,9 +614,9 @@
     <p class="rsvp-sub">Confírmanos tu asistencia</p>
   </div>
 
-  <form name="rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="rsvp-form">
-    <input type="hidden" name="form-name" value="rsvp">
-    <p hidden><label>No rellenar: <input name="bot-field"></label></p>
+  <form name="rsvp" id="rsvp-form">
+    <!-- honeypot anti-spam (oculto a las personas) -->
+    <p hidden aria-hidden="true"><label>No rellenar: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
 
     <!-- 1 -->
     <div class="field">
@@ -755,10 +755,13 @@
     });
     syncMas1();
 
-    // Envío: AJAX a "/" (Netlify Forms lo recoge en la web real; en la vista previa muestra el agradecimiento)
+    // Envío a Google Sheets (vía Apps Script). Funciona en cualquier dominio/alojamiento.
+    var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzl6LPwiWD2U5xAQL5K1_7UncpkPaAZOMPiIIWHYKws0sm7UqUb0rAtRKopXE4y8EUwFg/exec';
     form.addEventListener('submit', function(e){
       e.preventDefault();
       if(!form.reportValidity()){ return; }
+      var hp = form.querySelector('input[name="bot-field"]');
+      if(hp && hp.value){ return; }            // honeypot: si está relleno, es un bot
       var btn = form.querySelector('.submit');
       if(btn){ btn.disabled = true; btn.textContent = 'Enviando…'; }
       var body = new URLSearchParams(new FormData(form)).toString();
@@ -767,7 +770,7 @@
         var d = document.getElementById('rsvp-done');
         if(d){ d.hidden = false; }
       };
-      fetch('/', { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body:body })
+      fetch(ENDPOINT, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body:body })
         .then(done).catch(done);
     });
   })();
