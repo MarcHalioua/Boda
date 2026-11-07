@@ -513,6 +513,52 @@
   }
   .rsvp-done .big{ font-family:var(--f-display); font-size:clamp(1.8rem,4vw,2.8rem); color:var(--navy); }
   .rsvp-done .sm{ font-size:1rem; color:var(--navy-soft); max-width:30ch; }
+
+  /* ====================================================================
+     QUINTA HOJA — FAQs (acordeón pregunta/respuesta)
+     ==================================================================== */
+  .faq{
+    position:relative;
+    min-height:100svh; box-sizing:border-box;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:clamp(24px,4.5vh,46px);
+    padding-left:max(18px,env(safe-area-inset-left,0px));
+    padding-right:max(18px,env(safe-area-inset-right,0px));
+    padding-block:clamp(60px,10vh,110px);
+    background:radial-gradient(130% 110% at 50% 8%, var(--paper) 55%, var(--paper-deep) 100%);
+  }
+  .faq .monogram{            /* C | M arriba, como en el resto de hojas */
+    position:absolute; top:clamp(14px,2.4vh,30px); left:0; right:0;
+    justify-content:center; align-self:auto; z-index:2;
+  }
+  .faq-head{
+    font-family:var(--f-display); font-weight:500;
+    font-size:clamp(2.2rem,5.4vw,3.6rem); line-height:1.05; color:var(--ink);
+    text-align:center; text-wrap:balance;
+  }
+  .faq-list{ width:min(100%,680px); display:flex; flex-direction:column; }
+  .faq-item{ border-bottom:1px solid var(--hair); }
+  .faq-item summary{
+    list-style:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:space-between; gap:1.2em;
+    padding:clamp(16px,2.4vh,24px) 2px;
+    font-family:var(--f-display); font-size:clamp(1.12rem,2.2vw,1.45rem);
+    color:var(--ink); line-height:1.3;
+  }
+  .faq-item summary::-webkit-details-marker{ display:none; }
+  .faq-item summary:hover{ color:var(--navy); }
+  .faq-item summary:focus-visible{ outline:2px solid var(--navy); outline-offset:3px; border-radius:3px; }
+  /* icono "+" que pasa a "–" al abrir */
+  .faq-icon{ position:relative; width:18px; height:18px; flex:0 0 auto; }
+  .faq-icon::before, .faq-icon::after{ content:""; position:absolute; background:var(--navy); }
+  .faq-icon::before{ top:50%; left:0; right:0; height:1.6px; transform:translateY(-50%); }
+  .faq-icon::after{ left:50%; top:0; bottom:0; width:1.6px; transform:translateX(-50%); transition:opacity .2s ease, transform .2s ease; }
+  .faq-item[open] .faq-icon::after{ opacity:0; transform:translateX(-50%) rotate(90deg); }
+  .faq-answer{
+    padding:0 2px clamp(18px,2.6vh,26px);
+    font-family:var(--f-display); font-size:clamp(1rem,1.9vw,1.18rem);
+    line-height:1.6; color:var(--navy-soft); max-width:62ch;
+  }
 </style>
 </head>
 <body>
@@ -728,6 +774,28 @@
   <div class="rsvp-done" id="rsvp-done" hidden>
     <span class="big">¡Gracias!</span>
     <span class="sm">Hemos recibido tu confirmación. ¡Nos vemos en Menorca!</span>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="monogram" aria-label="C y M">
+    <span>C</span><i class="bar"></i><span>M</span>
+  </div>
+
+  <h2 class="faq-head">Antes de que preguntes...</h2>
+
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>
+        <span class="faq-q">¿Cómo llego hasta Menorca?</span>
+        <span class="faq-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="faq-answer">
+        Menorca tiene aeropuerto propio (MAH), con vuelos directos desde Barcelona, Madrid y
+        otras ciudades. También puedes llegar en ferry desde Barcelona o Valencia. Te
+        recomendamos reservar con antelación, ya que en septiembre suele haber mucha demanda.
+      </div>
+    </details>
   </div>
 </section>
 
