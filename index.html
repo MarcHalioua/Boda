@@ -541,9 +541,9 @@
   .faq-item summary{
     list-style:none; cursor:pointer;
     display:flex; align-items:center; justify-content:space-between; gap:1.2em;
-    padding:clamp(16px,2.4vh,24px) 2px;
-    font-family:var(--f-display); font-size:clamp(1.12rem,2.2vw,1.45rem);
-    color:var(--ink); line-height:1.3;
+    padding:clamp(18px,2.6vh,26px) 2px;
+    font-family:var(--f-display); font-size:clamp(1.35rem,2.8vw,1.85rem);
+    font-weight:600; color:var(--ink); line-height:1.3;
   }
   .faq-item summary::-webkit-details-marker{ display:none; }
   .faq-item summary:hover{ color:var(--navy); }
@@ -556,14 +556,14 @@
   .faq-item[open] .faq-icon::after{ opacity:0; transform:translateX(-50%) rotate(90deg); }
   .faq-answer{
     padding:0 2px clamp(18px,2.6vh,26px);
-    font-family:var(--f-display); font-size:clamp(1rem,1.9vw,1.18rem);
-    line-height:1.6; color:var(--navy-soft); max-width:100%;
+    font-family:var(--f-display); font-size:clamp(1.18rem,2.2vw,1.45rem);
+    font-weight:600; line-height:1.6; color:var(--ink); max-width:100%;
   }
   .faq-answer p{ margin:0 0 .75em; }
   .faq-answer p:last-child{ margin-bottom:0; }
-  .faq-answer strong{ font-weight:600; color:var(--ink); }
+  .faq-answer strong{ font-weight:700; color:var(--navy); }       /* resaltes: más negrita + marino */
   .faq-answer a{ color:var(--navy); text-underline-offset:2px; }
-  .faq-lead{ font-weight:600; color:var(--ink); }                 /* "Chicos:" / "Chicas:" */
+  .faq-lead{ font-weight:700; color:var(--navy); }                /* "Chicos:" / "Chicas:" */
   .faq-pending{ color:var(--navy-soft); font-style:italic; opacity:.85; }
   .faq-tablewrap{ overflow-x:auto; margin:.9em 0 .3em; }
   .faq-table{ width:100%; border-collapse:collapse; font-size:clamp(.9rem,1.6vw,1.02rem); }
@@ -832,10 +832,10 @@
         <span class="faq-icon" aria-hidden="true"></span>
       </summary>
       <div class="faq-answer">
-        <p>Te recomendamos quedarte en Ciudadella, ya que es donde será todo y desde donde saldrán los autobuses. Te dejamos una selección de hoteles, así como códigos de descuento.</p>
+        <p>Te recomendamos quedarte en Ciudadella, ya que es donde será todo y desde donde saldrán los autobuses. Te dejamos una selección de hoteles, así como códigos de descuento. Si vas en grupo, hay buenas opciones de apartamento (Booking y Airbnb).</p>
         <div class="faq-tablewrap">
           <table class="faq-table">
-            <thead><tr><th>Hotel</th><th>Estrellas</th><th>Web</th><th>Código descuento</th></tr></thead>
+            <thead><tr><th>Hoteles</th><th></th><th></th><th>Código descuento</th></tr></thead>
             <tbody>
               <tr><td>Hotel Faro Blanc</td><td class="faq-stars">★★★★</td><td><span class="faq-pending">Ver web</span></td><td class="code">CM-SEPT</td></tr>
               <tr><td>Boutique Ciutadella</td><td class="faq-stars">★★★★★</td><td><span class="faq-pending">Ver web</span></td><td class="code">CLAUDIA10</td></tr>
@@ -859,7 +859,7 @@
 
     <details class="faq-item">
       <summary>
-        <span class="faq-q">Entonces, ¿alquilo coche?</span>
+        <span class="faq-q">Entonces... ¿alquilo coche?</span>
         <span class="faq-icon" aria-hidden="true"></span>
       </summary>
       <div class="faq-answer">
@@ -867,7 +867,7 @@
         <p>No obstante, para descubrir la isla te recomendamos que tengas coche. Si necesitas uno, te dejamos un listado de empresas de alquiler y algunos descuentos.</p>
         <div class="faq-tablewrap">
           <table class="faq-table">
-            <thead><tr><th>Empresa de alquiler de vehículos</th><th>Código descuento</th></tr></thead>
+            <thead><tr><th>Empresas de alquiler</th><th>Código descuento</th></tr></thead>
             <tbody>
               <tr><td>Menorca Rent a Car</td><td class="code">CM10</td></tr>
               <tr><td>Autos Ciutadella</td><td class="code">BODA2027</td></tr>
