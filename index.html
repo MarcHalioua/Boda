@@ -572,6 +572,12 @@
   .faq-table td.code{ letter-spacing:.03em; }
   .faq-stars{ color:var(--navy); letter-spacing:.08em; white-space:nowrap; }
   .faq-sample{ font-size:.86em; margin-top:.7em; }
+  /* guía de recomendaciones por categorías (pregunta "¿Qué puedo hacer?") */
+  .rec-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:clamp(18px,2.4vw,34px); margin:1.1em 0 .3em; }
+  .rec-cat{ margin:0 0 .6em; font-family:var(--f-display); font-weight:600; font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; text-indent:.2em; color:var(--navy); }
+  .rec-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.4em; }
+  .rec-list li{ font-family:var(--f-display); font-size:1.08rem; line-height:1.25; color:var(--ink); }
+  .rec-list li .loc{ display:block; font-size:.78em; font-style:italic; color:var(--navy-soft); }
 </style>
 </head>
 <body>
@@ -879,7 +885,39 @@
         <span class="faq-icon" aria-hidden="true"></span>
       </summary>
       <div class="faq-answer">
-        <p>¡Enhorabuena, has tomado una gran decisión! Te dejamos nuestros sitios favoritos. <span class="faq-pending">(próximamente)</span></p>
+        <p>¡Enhorabuena, has tomado una gran decisión! Te dejamos nuestros sitios favoritos.</p>
+        <div class="rec-grid">
+          <div class="rec-col">
+            <h4 class="rec-cat">Calas y playas</h4>
+            <ul class="rec-list">
+              <li>Cala Macarella</li>
+              <li>Cala Pregonda</li>
+              <li>Cala en Turqueta</li>
+            </ul>
+          </div>
+          <div class="rec-col">
+            <h4 class="rec-cat">Pueblos y rincones</h4>
+            <ul class="rec-list">
+              <li>Ciutadella</li>
+              <li>Fornells</li>
+              <li>Binibeca Vell</li>
+            </ul>
+          </div>
+          <div class="rec-col">
+            <h4 class="rec-cat">Atardeceres</h4>
+            <ul class="rec-list">
+              <li>Cova d'en Xoroi</li>
+              <li>Far d'Artrutx</li>
+            </ul>
+          </div>
+          <div class="rec-col">
+            <h4 class="rec-cat">Dónde comer</h4>
+            <ul class="rec-list">
+              <li class="faq-pending">(vuestras recomendaciones)</li>
+            </ul>
+          </div>
+        </div>
+        <p class="faq-pending faq-sample">(Ejemplos — los sustituiremos por vuestra selección.)</p>
       </div>
     </details>
 
