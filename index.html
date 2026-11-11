@@ -557,8 +557,21 @@
   .faq-answer{
     padding:0 2px clamp(18px,2.6vh,26px);
     font-family:var(--f-display); font-size:clamp(1rem,1.9vw,1.18rem);
-    line-height:1.6; color:var(--navy-soft); max-width:62ch;
+    line-height:1.6; color:var(--navy-soft); max-width:100%;
   }
+  .faq-answer p{ margin:0 0 .75em; }
+  .faq-answer p:last-child{ margin-bottom:0; }
+  .faq-answer strong{ font-weight:600; color:var(--ink); }
+  .faq-answer a{ color:var(--navy); text-underline-offset:2px; }
+  .faq-lead{ font-weight:600; color:var(--ink); }                 /* "Chicos:" / "Chicas:" */
+  .faq-pending{ color:var(--navy-soft); font-style:italic; opacity:.85; }
+  .faq-tablewrap{ overflow-x:auto; margin:.9em 0 .3em; }
+  .faq-table{ width:100%; border-collapse:collapse; font-size:clamp(.9rem,1.6vw,1.02rem); }
+  .faq-table th{ text-align:left; font-weight:600; color:var(--ink); border-bottom:1.5px solid var(--hair); padding:.5em .7em; white-space:nowrap; }
+  .faq-table td{ border-bottom:1px solid var(--hair); padding:.55em .7em; color:var(--ink); vertical-align:top; }
+  .faq-table td.code{ letter-spacing:.03em; }
+  .faq-stars{ color:var(--navy); letter-spacing:.08em; white-space:nowrap; }
+  .faq-sample{ font-size:.86em; margin-top:.7em; }
 </style>
 </head>
 <body>
@@ -785,17 +798,91 @@
   <h2 class="faq-head">Antes de que preguntes...</h2>
 
   <div class="faq-list">
+
+    <details class="faq-item">
+      <summary>
+        <span class="faq-q">¿Cuál es el dress code?</span>
+        <span class="faq-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="faq-answer">
+        <p><span class="faq-lead">Chicos:</span> buenas noticias, <strong>no tendrás que llevar corbata</strong>. Te recomendamos encarecidamente que adaptes la vestimenta a la isla: traje de lino, traje informal o chino con chaqueta. Si te sirve de inspiración, el novio irá con un traje de lino. Os dejamos un moodboard para inspiraros: <span class="faq-pending">(enlace próximamente)</span></p>
+        <p><span class="faq-lead">Chicas:</span> os dejamos un moodboard para inspiraros: <span class="faq-pending">(enlace próximamente)</span></p>
+      </div>
+    </details>
+
     <details class="faq-item">
       <summary>
         <span class="faq-q">¿Cómo llego hasta Menorca?</span>
         <span class="faq-icon" aria-hidden="true"></span>
       </summary>
       <div class="faq-answer">
-        Menorca tiene aeropuerto propio (MAH), con vuelos directos desde Barcelona, Madrid y
-        otras ciudades. También puedes llegar en ferry desde Barcelona o Valencia. Te
-        recomendamos reservar con antelación, ya que en septiembre suele haber mucha demanda.
+        <p>Menorca tiene aeropuerto propio (MAH), con vuelos directos desde Madrid. Suelen volar Ryanair, Vueling, Iberia, Iberia Express y Air Europa. También puedes llegar en ferry desde Barcelona o Valencia. <strong>Te recomendamos reservar con antelación, ya que en septiembre suele haber mucha demanda.</strong></p>
       </div>
     </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="faq-q">¿Dónde me alojo?</span>
+        <span class="faq-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="faq-answer">
+        <p>Te recomendamos quedarte en Ciudadella, ya que es donde será todo y desde donde saldrán los autobuses. Te dejamos una selección de hoteles, así como códigos de descuento.</p>
+        <div class="faq-tablewrap">
+          <table class="faq-table">
+            <thead><tr><th>Hotel</th><th>Estrellas</th><th>Web</th><th>Código descuento</th></tr></thead>
+            <tbody>
+              <tr><td>Hotel Faro Blanc</td><td class="faq-stars">★★★★</td><td><span class="faq-pending">Ver web</span></td><td class="code">CM-SEPT</td></tr>
+              <tr><td>Boutique Ciutadella</td><td class="faq-stars">★★★★★</td><td><span class="faq-pending">Ver web</span></td><td class="code">CLAUDIA10</td></tr>
+              <tr><td>Agroturisme Son Vell</td><td class="faq-stars">★★★★</td><td><span class="faq-pending">Ver web</span></td><td class="code">MARC2027</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="faq-pending faq-sample">(Listado de ejemplo — lo sustituiremos por el oficial.)</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="faq-q">¿Habrá transporte el día de la boda?</span>
+        <span class="faq-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="faq-answer">
+        <p><strong>La finca no tiene espacio para aparcar coches propios ni existe parking cercano.</strong> Contarás con servicio de autobuses. El horario de salida y la ubicación los encontrarás en el apartado <a href="#timeline">«Aquí tienes lo importante»</a>.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="faq-q">Entonces, ¿alquilo coche?</span>
+        <span class="faq-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="faq-answer">
+        <p>La isla ofrece servicio de taxis y buses que conectan el aeropuerto con Ciudadella (unos 40 minutos de trayecto). El precio aproximado del taxi es de 50 euros.</p>
+        <p>No obstante, para descubrir la isla te recomendamos que tengas coche. Si necesitas uno, te dejamos un listado de empresas de alquiler y algunos descuentos.</p>
+        <div class="faq-tablewrap">
+          <table class="faq-table">
+            <thead><tr><th>Empresa de alquiler de vehículos</th><th>Código descuento</th></tr></thead>
+            <tbody>
+              <tr><td>Menorca Rent a Car</td><td class="code">CM10</td></tr>
+              <tr><td>Autos Ciutadella</td><td class="code">BODA2027</td></tr>
+              <tr><td>Illa Motors</td><td class="code">CLAUDIAMARC</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="faq-pending faq-sample">(Listado de ejemplo — lo sustituiremos por el oficial.)</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="faq-q">Me quedo unos días más, ¿qué puedo hacer?</span>
+        <span class="faq-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="faq-answer">
+        <p>¡Enhorabuena, has tomado una gran decisión! Te dejamos nuestros sitios favoritos. <span class="faq-pending">(próximamente)</span></p>
+      </div>
+    </details>
+
   </div>
 </section>
 
