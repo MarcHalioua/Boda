@@ -335,11 +335,12 @@
   .timeline{
     min-height:100svh;
     box-sizing:border-box;
-    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    display:flex; flex-direction:column; justify-content:flex-start; align-items:center;
     gap:clamp(26px,5vh,54px);
     padding-left:max(18px,env(safe-area-inset-left,0px));
     padding-right:max(18px,env(safe-area-inset-right,0px));
-    padding-block:clamp(40px,7vh,80px);
+    padding-top:clamp(52px,9.5vh,86px);     /* el título arranca a la altura del resto */
+    padding-bottom:clamp(40px,7vh,80px);
     background:radial-gradient(130% 110% at 50% 10%, var(--paper) 55%, var(--paper-deep) 100%);
   }
   .timeline{ position:relative; }
