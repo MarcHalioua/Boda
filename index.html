@@ -2,11 +2,10 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Boda de Claudia y Marc — 25 de septiembre de 2027, Menorca.">
-<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0);padding-bottom:env(safe-area-inset-bottom,0)}html,body{margin:0}body{font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Claudia & Marc</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Pinyon+Script&family=Herr+Von+Muellerhoff&display=swap">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="La boda de Claudia y Marc · 25 de septiembre de 2027 · Ciudadella, Menorca">
+<title>Claudia &amp; Marc · 25 · 09 · 2027</title>
+<style>*{box-sizing:border-box}html,body{margin:0;padding:0}</style>
 <style>
   /* ---------------------------------------------------------------
      Portada boda Claudia & Marc — Menorca · 25.09.2027
@@ -357,52 +356,45 @@
     color:var(--ink);
     text-wrap:balance;
   }
+  /* --- base (móvil): timeline en vertical --- */
   .tl-steps{
-    display:flex; align-items:flex-start; justify-content:center;
-    width:100%; max-width:1080px;
+    display:flex; flex-direction:column; align-items:center;
+    width:100%;
   }
   .tl-step{
     display:flex; flex-direction:column; align-items:center;
-    gap:clamp(8px,1.4vh,16px);
-    flex:0 0 auto; width:clamp(158px,24vw,252px); text-align:center;
+    gap:clamp(8px,1.4vh,16px); text-align:center;
   }
-  .tl-step .ic{
-    height:clamp(66px,10.5vh,104px); width:auto; max-width:100%; display:block;
-  }
-  .tl-step .lbl{
-    font-family:'Pinyon Script','Snell Roundhand',cursive;
-    font-size:clamp(1.9rem,3.6vw,3rem);
-    line-height:1; color:var(--navy);
+  .tl-step .ic{ height:clamp(66px,10.5vh,104px); width:auto; max-width:100%; display:block; }
+  .tl-step .lbl{                   /* misma tipografía que el resto de la web (Cormorant) */
+    font-family:var(--f-display); font-weight:500;
+    font-size:clamp(1.55rem,4.4vw,2.1rem); line-height:1.05; color:var(--navy);
   }
   .tl-step .time{
     font-family:var(--f-display);
     font-size:clamp(1rem,1.8vw,1.35rem);
     letter-spacing:.3em; text-indent:.3em;
-    color:var(--navy-soft);
-    font-feature-settings:"onum" 1;
+    color:var(--navy-soft); font-feature-settings:"onum" 1;
   }
-  /* conector con línea discontinua y corazón */
-  .tl-link{
-    flex:1 1 auto; align-self:flex-start;
-    height:clamp(66px,10.5vh,104px);        /* igual que el icono: la filigrana queda a su altura */
-    min-width:40px;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .tl-link .flourish{             /* filigrana caligráfica (horizontal en ordenador) */
-    color:var(--navy);
-    height:clamp(76px,10vh,104px); width:auto;
-    transform:rotate(90deg);
-  }
+  .tl-link{ display:flex; align-items:center; justify-content:center; }
+  .tl-link .flourish{ color:var(--navy); height:clamp(46px,7vh,64px); width:auto; }
 
-  /* ---- móvil: timeline en vertical (como la referencia) ---- */
-  @media (max-width:760px){
-    .tl-steps{ flex-direction:column; align-items:center; max-width:none; }
-    .tl-step{ width:auto; }
-    .tl-link{
-      align-self:center; width:auto; height:auto;
-      flex:0 0 auto;
+  /* --- escritorio: distribución diagonal --- */
+  @media (min-width:761px){
+    .tl-steps{
+      position:relative; display:block;
+      max-width:1000px; margin-inline:auto;
+      height:clamp(480px,64vh,680px);
     }
-    .tl-link .flourish{ transform:none; height:clamp(46px,7vh,64px); }
+    .tl-step{ position:absolute; width:clamp(160px,22vw,240px); }
+    .tl-step .lbl{ font-size:clamp(1.7rem,2.7vw,2.5rem); }
+    .s-bus{ top:0;   left:3%; }
+    .s-cer{ top:40%; left:50%; transform:translateX(-50%); }   /* ceremonia a media hoja */
+    .s-cel{ top:72%; right:3%; }
+    .tl-link{ position:absolute; }
+    .tl-link .flourish{ height:clamp(66px,8.5vh,92px); transform:rotate(45deg); }
+    .l1{ top:25%; left:28%; }
+    .l2{ top:58%; left:60%; }
   }
 
   /* ---------- Animaciones ---------- */
@@ -581,6 +573,8 @@
   .rec-list li{ font-family:var(--f-display); font-size:1.08rem; line-height:1.25; color:var(--ink); }
   .rec-list li .loc{ display:block; font-size:.78em; font-style:italic; color:var(--navy-soft); }
 </style>
+
+
 </head>
 <body>
 <main class="cover">
@@ -770,27 +764,27 @@
   <p class="tl-head">¡Aquí tienes lo importante!</p>
 
   <div class="tl-steps">
-    <div class="tl-step">
+    <div class="tl-step s-bus">
       <img class="ic" src="assets/tl_bus.png" alt="" aria-hidden="true">
       <span class="lbl">Recogida autobús</span>
       <span class="time">__ : __</span>
     </div>
 
-    <div class="tl-link" aria-hidden="true">
+    <div class="tl-link l1" aria-hidden="true">
       <svg class="flourish" viewBox="0 0 70 120" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M35 8 C22 26 50 34 35 54 C24 70 46 76 33 92"/><path d="M33 92 c-9 4 -7 18 4 17 c8 -1 8 -12 -1 -14"/></svg>
     </div>
 
-    <div class="tl-step">
+    <div class="tl-step s-cer">
       <img class="ic" src="assets/tl_rings.png" alt="" aria-hidden="true">
       <span class="lbl">Ceremonia</span>
       <span class="time">__ : __</span>
     </div>
 
-    <div class="tl-link" aria-hidden="true">
+    <div class="tl-link l2" aria-hidden="true">
       <svg class="flourish" viewBox="0 0 70 120" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M35 8 C22 26 50 34 35 54 C24 70 46 76 33 92"/><path d="M33 92 c-9 4 -7 18 4 17 c8 -1 8 -12 -1 -14"/></svg>
     </div>
 
-    <div class="tl-step">
+    <div class="tl-step s-cel">
       <img class="ic" src="assets/tl_toast.png" alt="" aria-hidden="true">
       <span class="lbl">Celebración</span>
       <span class="time">__ : __</span>
@@ -1041,5 +1035,6 @@
     });
   })();
 </script>
+
 </body>
 </html>
