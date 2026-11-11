@@ -546,6 +546,7 @@
     font-weight:600; color:var(--ink); line-height:1.3;
   }
   .faq-item summary::-webkit-details-marker{ display:none; }
+  .faq-item[open] summary{ border-bottom:1px solid var(--hair); margin-bottom:clamp(14px,2vh,20px); }
   .faq-item summary:hover{ color:var(--navy); }
   .faq-item summary:focus-visible{ outline:2px solid var(--navy); outline-offset:3px; border-radius:3px; }
   /* icono "+" que pasa a "–" al abrir */
@@ -557,7 +558,7 @@
   .faq-answer{
     padding:0 2px clamp(18px,2.6vh,26px);
     font-family:var(--f-display); font-size:clamp(1.18rem,2.2vw,1.45rem);
-    font-weight:600; line-height:1.6; color:var(--ink); max-width:100%;
+    font-weight:400; line-height:1.6; color:var(--ink); max-width:100%;
   }
   .faq-answer p{ margin:0 0 .75em; }
   .faq-answer p:last-child{ margin-bottom:0; }
