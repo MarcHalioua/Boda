@@ -376,6 +376,18 @@
     letter-spacing:.3em; text-indent:.3em;
     color:var(--navy-soft); font-feature-settings:"onum" 1;
   }
+  .tl-step .place{
+    display:block; margin-top:clamp(2px,.6vh,6px);
+    font-family:var(--f-display); line-height:1.25; max-width:260px;
+  }
+  .tl-step .place .venue{
+    display:block; color:var(--navy); font-weight:600;
+    font-size:clamp(1.05rem,1.6vw,1.28rem); letter-spacing:.01em;
+  }
+  .tl-step .place .addr{
+    display:block; color:var(--navy-soft);
+    font-size:clamp(.9rem,1.25vw,1.05rem); letter-spacing:.02em;
+  }
   .tl-link{ display:flex; align-items:center; justify-content:center; }
   .tl-link .flourish{ color:var(--navy); height:clamp(46px,7vh,64px); width:auto; }
 
@@ -768,6 +780,10 @@
       <img class="ic" src="assets/tl_bus.png" alt="" aria-hidden="true">
       <span class="lbl">Recogida autobús</span>
       <span class="time">__ : __</span>
+      <span class="place">
+        <span class="venue">Plaça des Born</span>
+        <span class="addr">Ciutadella de Menorca</span>
+      </span>
     </div>
 
     <div class="tl-link l1" aria-hidden="true">
@@ -778,6 +794,9 @@
       <img class="ic" src="assets/tl_rings.png" alt="" aria-hidden="true">
       <span class="lbl">Ceremonia</span>
       <span class="time">__ : __</span>
+      <span class="place">
+        <span class="venue">Finca Santa Teresa</span>
+      </span>
     </div>
 
     <div class="tl-link l2" aria-hidden="true">
