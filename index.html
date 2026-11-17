@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="La boda de Claudia y Marc · 25 de septiembre de 2027 · Ciudadella, Menorca">
 <title>Claudia &amp; Marc · 25 · 09 · 2027</title>
-<style>*{box-sizing:border-box}html,body{margin:0;padding:0}</style>
+<style>*{box-sizing:border-box}html,body{margin:0;padding:0}[hidden]{display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Pinyon+Script&family=Herr+Von+Muellerhoff&display=swap">
 <style>
   /* ---------------------------------------------------------------
      Portada boda Claudia & Marc — Menorca · 25.09.2027
@@ -29,6 +30,8 @@
     --f-display:'Cormorant Garamond','Cormorant',Georgia,'Times New Roman',serif;
     --f-script:'Snell Roundhand','Apple Chancery','Pinyon Script',cursive;
   }
+
+  [hidden]{display:none!important;}   /* robusto en cualquier alojamiento (no solo en el preview) */
 
   html{scroll-behavior:smooth;}
   html,body{background:var(--paper);min-height:100%;}
@@ -359,6 +362,7 @@
   /* --- base (móvil): timeline en vertical --- */
   .tl-steps{
     display:flex; flex-direction:column; align-items:center;
+    gap:clamp(14px,2.4vh,26px);
     width:100%;
   }
   .tl-step{
@@ -428,25 +432,43 @@
     .scrollcue svg{animation:none!important;}
   }
 
-  /* ---------- Estrecho / móvil (apilado provisional) ---------- */
+  /* ---------- Móvil: portada compuesta en una pantalla ---------- */
   @media (max-width:760px){
+    .cover{ padding-block:clamp(14px,2.6vh,26px); }
     .stage{
-      grid-template-columns:1fr;
-      grid-template-rows:none;
-      grid-template-areas:"mono" "mid" "ph1" "ph2" "sail" "faro" "cpl" "scr";
-      min-height:auto;
-      gap:30px;
-      padding-block:12px;
+      grid-template-columns:1fr 1fr;
+      grid-template-rows:auto auto auto auto auto auto;
+      grid-template-areas:
+        "mono mono"
+        "mid  mid"
+        "ph1  ph2"
+        "faro sail"
+        "cpl  cpl"
+        "scr  scr";
+      min-height:100svh;              /* sigue siendo portada de una pantalla */
+      align-content:space-between;
+      gap:clamp(12px,2.2vh,24px);
+      padding-block:4px;
     }
-    .ph-a,.ph-b{justify-self:center;}
-    .velero,.faro,.couple{justify-self:center;align-self:center;margin-top:0;}
-    .ph-a .frame{transform:rotate(-4deg);}
-    .ph-b .frame{transform:rotate(3deg);}
-    .frame{width:clamp(150px,46vw,210px);}
-    .velero{width:min(40vw,170px);}
-    .faro{width:min(40vw,170px);}
-    .couple{width:min(30vw,130px);}
-    .avarcas{position:static;transform:rotate(5deg);width:min(26vw,110px);justify-self:center;margin:4px auto 0;}
+    .stage > *{ min-width:0; }        /* evita que los bloques a todo el ancho ensanchen las columnas */
+    .monogram{ align-self:start; }
+    .center{ width:100%; gap:clamp(6px,1.2vh,14px); }   /* ancho completo: el texto fluye y se centra */
+    .welcome{ max-width:100%; }
+
+    /* las dos fotos, emparejadas y centradas en cada columna */
+    .ph-a,.ph-b{ justify-self:center; align-self:center; }
+    .frame{ width:clamp(102px,32vw,140px); box-sizing:border-box; }
+    .ph-a .frame{ transform:rotate(-4deg); }
+    .ph-b .frame{ transform:rotate(4deg); }
+
+    /* faro + velero como pareja náutica; la pareja centrada debajo */
+    .faro,.velero,.couple{ justify-self:center; align-self:center; margin-top:0; }
+    .faro{   width:min(28vw,118px); transform:rotate(-3deg); }
+    .velero{ width:min(30vw,126px); transform:rotate(3deg); }
+    .couple{ width:min(28vw,112px); transform:none; }
+
+    .birds{ display:none; }          /* gaviotas afinadas para escritorio; en móvil, limpio */
+    .scrollcue{ align-self:end; }
   }
 
   /* ====================================================================
@@ -593,6 +615,33 @@
   .rec-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.4em; }
   .rec-list li{ font-family:var(--f-display); font-size:1.08rem; line-height:1.25; color:var(--ink); }
   .rec-list li .loc{ display:block; font-size:.78em; font-style:italic; color:var(--navy-soft); }
+
+  /* ====================================================================
+     AJUSTES MÓVIL (≤760px) — pulido final de todas las hojas
+     ==================================================================== */
+  html,body{ overflow-x:hidden; }     /* evita scroll horizontal por giros/adornos */
+
+  @media (max-width:760px){
+    /* Hoja 2 — lema + cuenta atrás */
+    .spread{ padding-inline:18px; }
+    .motto{ padding-inline:14px; }
+    .motto .line{ font-size:clamp(2rem,8.5vw,2.9rem); }
+    .countdown{ margin-top:clamp(22px,4vh,36px); gap:clamp(10px,3.4vw,22px); }
+    .cd-unit{ min-width:2.1em; }
+
+    /* Hoja 3 — ¿Te apuntas? (RSVP) */
+    .rsvp{ padding-block:clamp(56px,9vh,86px); gap:clamp(20px,3.4vh,34px); }
+    .rsvp-head{ font-size:clamp(2.3rem,9.5vw,3.2rem); }
+    .rsvp form{ gap:clamp(18px,3vh,26px); }
+    .choice label{ padding:.6em 1.5em; }        /* zona táctil cómoda */
+
+    /* Hoja 5 — FAQs: recomendaciones y tablas legibles */
+    .rec-grid{ grid-template-columns:1fr 1fr; gap:clamp(16px,4vw,26px); }
+    .faq-table{ font-size:clamp(1rem,3.4vw,1.14rem); }
+  }
+  @media (max-width:400px){
+    .rec-grid{ grid-template-columns:1fr; }      /* en pantallas estrechas, una columna */
+  }
 </style>
 
 
